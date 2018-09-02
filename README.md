@@ -1,4 +1,4 @@
-# materials-shop-clj
+## Arch Materials Shop Clojure
 
 A Clojure project designed for selling of architectural materials.
 
