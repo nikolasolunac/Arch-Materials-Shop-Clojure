@@ -2,7 +2,6 @@
   (:refer-clojure :exclude [update])  
   (:require [korma.db :as korma]))
 
-
 ;mysql connection
 (def dbbrokerKonekcija (korma/mysql 
   {:classname "com.mysql.jdbc.Driver"

@@ -13,23 +13,13 @@
 )
 
 ; Swagger
-(def materialsShop
-  (api 
-    {
-      :swagger {
-        :ui "/"
-        :spec "/swagger.json"
-        :data {
-          :info { :title "Arch Materials Shop Clj"}
-          :tags [
-            {:name "Kupci"}
-            {:name "Artikli"}
-            {:name "Tipovi artikala"}
-          ]
-        }
-      }
-    }
-
+(def materialsShop (api 
+  {:swagger {:ui "/"
+             :spec "/swagger.json"
+             :data {:info { :title "Arch Materials Shop Clj"}
+             :tags [{:name "Kupci"}
+                    {:name "Artikli"}
+                    {:name "Tipovi artikala"}]}}}
 
     ; Artikal CRUD
     (context "artikli" []
@@ -44,8 +34,7 @@
         :path-params [id :- s/Any]
         :summary "<Vrati artikal po ID-u>"
         (def artikalBaza (vratiArtikalID id))
-        (if artikalBaza (ok artikalBaza) (not-found))
-      )
+        (if artikalBaza (ok artikalBaza) (not-found)))
 
       (POST "/" []
         :summary "<Kreiraj novi artikal"
@@ -53,9 +42,7 @@
         (def kreiranArtikalR (dodajArtikal noviArtikal))
         (if (= (type kreiranArtikalR) java.lang.String) 
           (bad-request kreiranArtikalR)
-          (ok kreiranArtikalR) 
-        )
-      )
+          (ok kreiranArtikalR)))
 
       (PUT "/:id" []
         :summary "<Azuriraj artikal>"
@@ -64,9 +51,7 @@
         (def azuriraniArtikalR (azurirajArtikal id azuriraniArtikal))
         (if (= (type azuriraniArtikalR) java.lang.Integer) 
           (ok nil) 
-          (bad-request azuriraniArtikalR)
-        )
-      )
+          (bad-request azuriraniArtikalR)))
 
       (DELETE "/:id" []
         :summary "<Obrisi artikal>"
@@ -74,11 +59,7 @@
         (def obrisiArtikalR (obrisiArtikal id))
         (if (= (type obrisiArtikalR) java.lang.String) 
           (bad-request obrisiArtikalR)
-          (ok nil) 
-        )
-      )
-    )
-
+          (ok nil))))
 
     ; Kupac CRUD
     (context "kupci" []
@@ -93,8 +74,7 @@
         :path-params [id :- s/Any]
         :summary "<Vrati kupca po ID-u>"
         (def kupacBaza (vratiKupcaID id))
-        (if kupacBaza (ok kupacBaza) (not-found))
-      )
+        (if kupacBaza (ok kupacBaza) (not-found)))
 
       (POST "/" []
         :summary "<Kreiraj novog kupca>"
@@ -102,9 +82,7 @@
         (def kreiraniKupacR (dodajKupca noviKupac))
         (if (= (type kreiraniKupac) java.lang.String) 
           (bad-request kreiraniKupac)
-          (ok kreiraniKupac) 
-        )
-      )
+          (ok kreiraniKupac)))
 
       (PUT "/:id" []
         :summary "<Azuriraj kupca>"
@@ -113,9 +91,7 @@
         (def azuriraniKupacR (azurirajKupca id azuriraniKupac))
         (if (= (type azuriraniKupacR) java.lang.Integer) 
           (ok nil) 
-          (bad-request azuriraniKupacR)
-        )
-      )
+          (bad-request azuriraniKupacR)))
 
       (DELETE "/:id" []
         :summary "<Obrisi kupca>"
@@ -123,12 +99,8 @@
         (def obrisiKupcaR (obrisiKupca id))
         (if (= (type obrisiKupcaR) java.lang.String) 
           (bad-request obrisiKupcaR)
-          (ok nil) 
-        )
-      )
-    )
+          (ok nil))))
 
-    
     ; Tip Artikla CRUD
     (context "tipoviartikala" []
       :tags ["tipoviartikala"]
@@ -142,8 +114,7 @@
         :path-params [id :- s/Any]
         :summary "<Vrati tip artikla po ID-u>"
         (def tipArtiklaBaza (vratiTipArtiklaID id))
-        (if tipArtiklaBaza (ok tipArtiklaBaza) (not-found))
-      )
+        (if tipArtiklaBaza (ok tipArtiklaBaza) (not-found)))
 
       (POST "/" []
         :summary "<Kreiraj novi tip artikla>"
@@ -151,9 +122,7 @@
         (def kreiraniTipArtiklaR (dodajTipArtikla noviTipArtikla))
         (if (= (type kreiraniTipArtiklaR) java.lang.String) 
           (bad-request kreiraniTipArtiklaR)
-          (ok kreiraniTipArtiklaR) 
-        )
-      )
+          (ok kreiraniTipArtiklaR)))
 
       (PUT "/:id" []
         :summary "<Azuriraj tip artikla>"
@@ -162,9 +131,7 @@
         (def azuriraniTipArtiklaR (azurirajTipArtikla id azuriraniTipArtikla))
         (if (= (type azuriraniTipArtiklaR) java.lang.Integer) 
           (ok nil) 
-          (bad-request azuriraniTipArtiklaR)
-        )
-      )
+          (bad-request azuriraniTipArtiklaR)))
 
       (DELETE "/:id" []
         :summary "<Obrisi tip artikla>"
@@ -172,9 +139,4 @@
         (def obrisiTipArtiklaR (obrisiTipArtikla id))
         (if (= (type obrisiTipArtiklaR) java.lang.String) 
           (bad-request obrisiTipArtiklaR)
-          (ok nil) 
-        )
-      )
-    )
-  )
-)
+          (ok nil))))))
