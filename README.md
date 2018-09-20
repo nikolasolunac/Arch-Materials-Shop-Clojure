@@ -1,16 +1,19 @@
-# materials-shop-clj
+# Materials-Shop-Clj
 
 A Clojure project designed with Leiningen that presents shop for architectural materials, with buyers and items. It uses korma for MySQL communication, ring as a web server, composure-api as a REST API framework and lein/ring for binding with Leiningen. For API testing, this project uses Swagger.
 
-## prerequisites
+
+## Prerequisites
 
 This project uses Clojure 1.9.0 on Java 1.8.0 and it is developed in the Windows OS with mandatory extension: Chocolatey package manager. Database for this app is in 'baza/' folder and can be executed in MySQL. Visual Studio Code was used for writting code and it is recommended IDE for this project.
 
-## run
+
+## Run
 
 To run the app use 'lein ring server' in the root of the project (this will open Swagger API).
 
-## architecture
+
+## Architecture
 
 /baza/ - holds latest database;
 
@@ -24,7 +27,8 @@ To run the app use 'lein ring server' in the root of the project (this will open
 
 /src/util/ - utility helpers.
 
-## libraries
+
+## Libraries
 
 [lein-ring "0.12.4"] - Ring server plugin (Leiningen);
 
@@ -39,6 +43,7 @@ To run the app use 'lein ring server' in the root of the project (this will open
 [mysql/mysql-connector-java "5.1.6"] - Standard MySQL connector;
 
 [clj-http "3.9.1"] - Lower-level dependency of Composure and Swagger.
+
 
 ## License
 
