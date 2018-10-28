@@ -25,20 +25,20 @@
 ;add
 (defn dodajTipArtikla 
   [noviTipArtikla]
-  (let [postojeciTipArtiklaNaziv (vratiTipArtiklaNaziv (get noviTipArtikla :Naziv))])
+  (def postojeciTipArtiklaNaziv (vratiTipArtiklaNaziv (get noviTipArtikla :Naziv)))
   (if postojeciTipArtiklaNaziv 
     "Vec postoji tip artikla sa tim imenom..."
-  ((let [ubaciTipArtikla (insert TipArtikla (values
+  ((def ubaciTipArtikla (insert TipArtikla (values
     {:TipArtiklaID (get noviTipArtikla :TipArtiklaID)
-     :Naziv (get noviTipArtikla :Naziv)}))])
-  (let [ubaceniTipArtikla (get ubaciTipArtikla :generated_key)])
+     :Naziv (get noviTipArtikla :Naziv)})))
+  (def ubaceniTipArtikla (get ubaciTipArtikla :generated_key))
       (vratiTipArtiklaID ubaceniTipArtikla))))
 
 ;update
 (defn azurirajTipArtikla 
   [TipArtiklaID azuriraniTipArtikla]
-  (let [postojeciTipArtiklaID (vratiTipArtiklaID TipArtiklaID)])
-  (let [postojeciTipArtiklaNaziv (vratiTipArtiklaNaziv (get azuriraniTipArtikla :Naziv))])
+  (def postojeciTipArtiklaID (vratiTipArtiklaID TipArtiklaID))
+  (def postojeciTipArtiklaNaziv (vratiTipArtiklaNaziv (get azuriraniTipArtikla :Naziv)))
   (if postojeciTipArtiklaID 
     (if (and postojeciTipArtiklaNaziv (not= (parse-int TipArtiklaID) (get postojeciTipArtiklaNaziv :TipArtiklaID))) 
       "Vec postoji tip artikla sa tim imenom..."
@@ -51,7 +51,7 @@
 ;delete
 (defn obrisiTipArtikla 
   [TipArtiklaID]
-  (let [postojeciTipArtiklaID (vratiTipArtiklaID TipArtiklaID)])
+  (def postojeciTipArtiklaID (vratiTipArtiklaID TipArtiklaID))
   (if postojeciTipArtiklaID 
     (delete TipArtiklaID (where {:TipArtiklaID [= TipArtiklaID]}))
       "Ne postoji taj tip artikla..."))

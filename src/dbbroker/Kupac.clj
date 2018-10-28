@@ -25,24 +25,24 @@
 ;add
 (defn dodajKupca 
   [noviKupac]
-    (let [postojeciKupac (vratiKupcaUsername (get noviKupac :Username))])  
+    (def postojeciKupac (vratiKupcaUsername (get noviKupac :Username)))  
     (if postojeciKupac 
     "Username zauzet..."
-    ((let [ubaciKupca (insert Kupac (values 
+    ((def ubaciKupca (insert Kupac (values 
       {:KupacID (get noviKupac :KupacID)
       :Ime (get noviKupac :Ime)
       :Prezime (get noviKupac :Prezime)
       :Username (get noviKupac :Username)
       :Telefon (get noviKupac :Telefon)
-      :Email (get noviKupac :Email)}))])
-    (let [ubacenKupacID (get ubaciKupca :generated_key)])
+      :Email (get noviKupac :Email)})))
+    (def ubacenKupacID (get ubaciKupca :generated_key))
       (vratiKupcaID ubacenKupacID))))
 
 ;update
 (defn azurirajKupca 
   [KupacID azuriraniKupac]
-    (let [postojeciKupacID (vratiKupcaID KupacID)])
-    (let [postojeciKupacUsername (vratiKupcaUsername (get azuriraniKupac :Username))])
+    (def postojeciKupacID (vratiKupcaID KupacID))
+    (def postojeciKupacUsername (vratiKupcaUsername (get azuriraniKupac :Username)))
       (if postojeciKupacID 
         (if (and postojeciKupacUsername (not= (parse-int KupacID) (get postojeciKupacUsername :KupacID))) 
           "Username zauzet..."
@@ -59,6 +59,6 @@
 ;delete
 (defn obrisiKupca 
   [KupacID]
-    (let [postojeciKupac (vratiKupcaID KupacID)])
+    (def postojeciKupac (vratiKupcaID KupacID))
     (if postojeciKupac (delete Kupac (where {:KupacID [= KupacID]}))
       "Ne postoji taj kupac..."))
